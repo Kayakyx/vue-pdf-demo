@@ -1,10 +1,12 @@
 <template>
     <div class="pdf-demo">
+<!--        <div :class="{  'printPDF': printPDF }">-->
 
 
-<!--
+<!--        <div id="demo" style="padding: 30px 40px;">-->
+<!--        <div id="demo" :class="{  'printPDF': printPDF }">-->
         <div id="demo" >
-
+<!--
             <article>
                 <h3>XXXXXXXXXXXXXXXXXXXXXXXXXXX协议书</h3>
                 <span style="margin-right:100px">丙方（受让方）：</span>       <span>身份证号：</span><br>
@@ -64,11 +66,8 @@
 
             </article>
 
-            <button @click="handleDown">jsPDF方式下载</button>
-        </div>
       -->
 <!--
-        <div id="demo" >
 
             <article class="contract" style="position: relative">
 
@@ -196,26 +195,20 @@
 
 
             </article>
-
-            <button @click="handleDown">jsPDF方式下载</button>
-        </div>
 -->
 
-        <button @click="handleDown">jsPDF方式下载</button>
-        <button @click="handleWindowPrint( '#demo', '电子合同' )">浏览器方式下载</button>
 
-        <div id="demo" >
 
             <article class="contract" style="position: relative">
 
-                <p style="margin-top: 0; font-weight: 600">合同编号：1212121212121</p>
+                <p style="margin-top: 0">合同编号：1212121212121</p>
                 <h1>XXXXXXXXXXXXXXXXXXXXXXXXXXX协议书</h1>
                 <div class="key-info" style="display: flex">
                     <aside class="info-left" style="flex: 1">
                         <div class="info-row">
 
                             <span>丙方（受让方）：</span>
-                            <span>莫文蔚</span>
+                            <span></span>
 
                         </div>
 
@@ -229,16 +222,24 @@
                         <div class="info-row">
 
                             <span>XXX期限：</span>
-                            <span>12个月</span>
+                            <span>12个月/6个月/3个月</span>
 
                         </div>
 
                         <div class="info-row">
 
                             <span>预期XXXXXXX：</span>
-                            <span>9.5%</span>
+                            <span>9.5%/8.5%/7.5%</span>
 
                         </div>
+
+                        <div class="info-row">
+
+                            <span>XXX及XXX账户：</span>
+                            <span></span>
+
+                        </div>
+
 
 
 
@@ -249,7 +250,7 @@
                         <div class="info-row">
 
                             <span>身份证号：</span>
-                            <span>374585488921542647</span>
+                            <span></span>
 
                         </div>
 
@@ -264,31 +265,31 @@
                         <div class="info-row">
 
                             <span>XXX日期：</span>
-                            <span>2018-04-28</span>
+                            <span>季度XXX，XXXXXXX</span>
 
                         </div>
-
 
                         <div class="info-row">
 
-                            <span>XXX账户：</span>
-                            <span>6161787892928888</span>
+                            <span>结束日期：</span>
+                            <span>季度XXX，XXXXXXX</span>
 
                         </div>
-                        
+
+                        <div class="info-row">
+
+                            <span>开户行：</span>
+                            <span>季度XXX，XXXXXXX</span>
+
+                        </div>
+
+
 
                     </aside>
 
 
-                </div>
 
-                <div class="key-info-line">
-                    <div class="info-row">
 
-                        <span style="font-weight: 600">开户行：</span>
-                        <span>山东省XXXXXX农业银行(XXXXXXX中路支行)山XXXXXXXXXX中国农业银行</span>
-
-                    </div>
                 </div>
 
 
@@ -316,34 +317,27 @@
                 <h3>第八条 XXXX</h3>
                 <p>各方已经充分了解《XXXXXXXXXXXXXXXXXXXXXXXXXXX说明书》的条文内容和相应的法律责任，并自愿签订本协议。</p>
 
-                <!--
-                img标签  增加 crossorigin="anonymous" 属性 允许 canvas内跨域请求 外部图片
-                img标签使用注意：
-                如果你要用来生成canvas的dom中包含的img图片，之前已经被你的用户访问过（例如你是在对线上现有的业务进行改造），显然之前你应该没有给<img>标签添加crossorigin="anonymous"属性，那么请注意，这时候你的用户的浏览器已经把这些图片缓存在了本地，所以即便你按照上面的步骤都做了也没用，因为访问图片时读到的都是不带Access-Control-Allow-Origin等响应头的缓存数据。这个时候你要做的，就是给要生成canvas的dom中的所有<img>标签的src添加一个任意的字符串，只要能起到重新发起图片读取请求，从而避免读取到浏览器缓存数据即可，
-                如下所示：'http://h0.hucdn.com/open/201819/9404b56f97e7df8a_750x1334.png?any_string_is_ok'
-                注意，不要添加随机字符串，那会击穿CDN缓存的，随便添加一个固定的字符串，能够避免读取到浏览器的缓存数据就可以了。这是本人血的教训！所以请大家千万千万不要忽视这一点！
-                详见：文章&#45;&#45;》 https://www.jianshu.com/p/22bd5b98e38a
-                使用方式： 见本代码开头的 第一注释。
-
-                -->
-
-                <footer style="display: flex">
-                    <div style="flex: 1;">
-                        <div>甲方（转让方）：</div>
-                        <div style="position: relative; padding-top: 50px">XXXXXXXXXXXXXXXX管理有限公司<img src="/static/sealPic/seal_js.png" alt="章" style="position: absolute; top: -50px; left: 0; width: 190px; height: 190px;"/></div>
-                    </div>
-                    <div style="flex: 1; margin-left: 30px;">
-                        <div>乙方（投顾方）：</div>
-                        <div style="position: relative; padding-top: 50px">XXXXXXXXXXX信息服务有限公司<img src="/static/sealPic/seal_jr.png" alt="章" style="position: absolute; top: -50px; left: 0; width: 190px; height: 190px;"/></div>
-                    </div>
-
-                    <div  style="flex: 1; margin-left: 30px;">
-                        <div>签名：</div>
-                        <div style="position: relative;"><img crossorigin="anonymous" src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2235535602,207523732&fm=26&gp=0.jpg " alt="" style="position:absolute; left: 20px; width: 190px;"></div>
-                    </div>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+                <footer>
+                    <p>甲方（转让方）：XXXXXXXXXXXXXXX基金管理有限公司</p>
+                    <p>乙方（投顾方）：XXXXXXXXXXXXXXX信息服务有限公司</p>
                 </footer>
+
+
+                <div class="signature">签名： <img crossorigin="anonymous" src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2235535602,207523732&fm=26&gp=0.jpg " alt="" style="width: 190px;"></div>
 
 
             </article>
@@ -355,18 +349,28 @@
 
 
 
+<!--        </div>-->
+
+
+        <button @click="handleDown">下载PDF</button>
+        <button @click="handleWindowPrint( '#demo', '电子合同' )">浏览器打印</button>
+<!--        <button @click="handleWindowPrintRouter">路由调转方式打印</button>-->
+<!--        <button @click="handleWindowPrintPosition">绝对定位方式打印</button>-->
+
     </div>
 </template>
 
 <script>
-
+    // import html2Canvas from 'html2canvas';
+    // import JsPDF from 'jspdf';
+    // import htmlToPdf from '@/unit/htmlToPdfJQ';
     import htmlToPdf from '@/unit/htmlToPdf';
 
     export default {
         name: "PdfDemo",
 
         data(){
-            //和导出pdf没关系
+
             return {
                 contractData: {
                     name: '',
@@ -374,6 +378,7 @@
                     // signatureImg: '../../../static/signature.gif'
                     signatureImg: ''
                 },
+                printPDF: false
 
             }
 
@@ -400,7 +405,7 @@
                 //去除页面不必要的 head 标签内  内容， 避免影响打印页 ， title 为保存为 pdf 的文件时的 文件名
                 document.head.innerHTML = '<meta charset="utf-8">\n' +
                     ' <title> ' + fileName + '</title>\n' +
-                    ' <link rel="shortcut icon" href="http://192.168.29.50:8081/favicon.ico" type="image/x-icon" />\n' +
+                    ' <link rel="shortcut icon" href="http://192.168.01.01:8080/favicon.ico" type="image/x-icon" />\n' +
                     ' <meta name="format-detection" content="telephone=no">\n' +
                     ' <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">\n' +
                     ' <meta name="viewport" content="width=device-width,initial-scale=1.0">\n' +
@@ -430,9 +435,54 @@
 
 
 
+
+/*
+
+            //路由调转去新页面方式
+            handleWindowPrintRouter(){
+                this.$router.push('/PrintContract');
+
+                /!*
+                //留存原来的 html
+                // let bdHtml = window.document.body.innerHTML;
+                let bdHtml = document.querySelector('#app').innerHTML;
+
+
+                //要打印的 内容 html
+                // document.body.innerHTML =  document.querySelector('#demo').innerHTML;
+                document.querySelector('#app').innerHTML =  document.querySelector('#demo').outerHTML;
+                window.print();
+                //重新设会当前页面
+                // window.document.body.innerHTML = bdHtml;
+                document.querySelector('#app').innerHTML =  bdHtml;
+                //刷新页面
+                window.location.reload();
+
+                *!/
+
+
+            },
+
+*/
+
+/*
+
+            //绝对定位方式 ， 覆盖掉不想打印的内容
+            handleWindowPrintPosition(){
+                //隐藏不必要内容
+                this.printPDF = true;
+                // window.print();
+                //恢复
+                // this.printPDF = false;
+
+            }
+
+*/
+
+
+
         },
         mounted() {
-            //和导出pdf没关系
             //模拟发送 ajax
             setTimeout( ()=>{
                 this.contractData = {
@@ -500,6 +550,7 @@
         width: 200px;
     }
 
+
     #demo {
         color: #000;
         font-family: "Microsoft YaHei";
@@ -520,6 +571,36 @@
         margin: 16px 0;
     }
 
+
+
+
+    /*
+
+        #demo.printPDF {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            !*height: 100vh;*!
+            z-index: 99;
+            overflow: auto;
+        }
+    */
+
+/*
+    .printPDF {
+        position: absolute;
+        width: 100%;
+        left: 0;
+        top: 0;
+        z-index: 99;
+        background: #fff;
+        overflow: auto;
+
+    }
+
+
+*/
 
 
 

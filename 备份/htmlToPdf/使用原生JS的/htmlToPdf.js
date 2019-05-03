@@ -2,6 +2,7 @@
 
 import html2canvas from 'html2canvas';
 import JsPDF from 'jspdf';
+// import $ from 'jquery'; // 去掉jq
 
 /**
  * @param  ele          要生成 pdf 的DOM元素（容器）
@@ -10,24 +11,61 @@ import JsPDF from 'jspdf';
 
 function downloadPDF(ele, pdfName){
 
-    let eleW = ele.offsetWidth;// 获得该容器的宽
-    let eleH = ele.offsetHeight;// 获得该容器的高
+    // var element = $("#demo");    // 这个dom元素是要导出pdf的div容器
 
+    // console.log(ele,'1212122');
+
+
+    // var element = ele;    // 这个dom元素是要导出pdf的div容器
+
+    // var w = element.width();    // 获得该容器的宽
+    // var h = element.height();    // 获得该容器的高
+
+    let eleW = ele.offsetWidth;
+    let eleH = ele.offsetHeight;
+
+    // console.log(w,h, '--->', eleW, eleH);
+
+
+    // var offsetTop = element.offset().top;    // 获得该容器到文档顶部的距离
+    // var offsetLeft = element.offset().left;    // 获得该容器到文档最左的距离
 
     let eleOffsetTop = ele.offsetTop;  // 获得该容器到文档顶部的距离
     let eleOffsetLeft = ele.offsetLeft; // 获得该容器到文档最左的距离
 
+    // console.log(offsetTop,offsetLeft , '----->',eleOffsetTop, eleOffsetLeft);
+
+
     var canvas = document.createElement("canvas");
     var abs = 0;
+    // var win_i = $(window).width();    // 获得当前可视窗口的宽度（不包含滚动条）
+    // var win_o = window.innerWidth;    // 获得当前窗口的宽度（包含滚动条）
 
     let win_in = document.documentElement.clientWidth || document.body.clientWidth; // 获得当前可视窗口的宽度（不包含滚动条）
     let win_out = window.innerWidth; // 获得当前窗口的宽度（包含滚动条）
 
+    // console.log(win_i, win_o, '---->', win_in, win_out);
+
+    // console.log(canvas, abs, win_i, win_o);
+
+
+/*
+    if(win_o>win_i){
+        abs = (win_o - win_i)/2;    // 获得滚动条长度的一半
+        // console.log(abs, 'absabs');
+    }
+*/
     if(win_out>win_in){
         // abs = (win_o - win_i)/2;    // 获得滚动条长度的一半
         abs = (win_out - win_in)/2;    // 获得滚动条宽度的一半
         // console.log(a, '新abs');
     }
+
+
+/*
+    canvas.width = w * 2;    // 将画布宽&&高放大两倍
+    canvas.height = h * 2;
+*/
 
     canvas.width = eleW * 2;    // 将画布宽&&高放大两倍
     canvas.height = eleH * 2;
@@ -39,6 +77,9 @@ function downloadPDF(ele, pdfName){
 
     context.scale(2, 2);
 
+    // console.log(-eleOffsetLeft-abs,-eleOffsetTop, '这是什么');
+    // console.log(-offsetLeft-abs,-offsetTop, '这是什么');
+    // context.translate(-offsetLeft-abs,-offsetTop);
     context.translate(-eleOffsetLeft -abs, -eleOffsetTop);
     // 这里默认横向没有滚动条的情况，因为offset.left(),有无滚动条的时候存在差值，因此
     // translate的时候，要把这个差值去掉
@@ -50,6 +91,22 @@ function downloadPDF(ele, pdfName){
         // allowTaint: true,  //允许 canvas 污染， allowTaint参数要去掉，否则是无法通过toDataURL导出canvas数据的
         useCORS:true  //允许canvas画布内 可以跨域请求外部链接图片, 允许跨域请求。
     } ).then( (canvas)=>{
+
+
+        // 【重要】关闭抗锯齿
+        /*
+        context.mozImageSmoothingEnabled = false;
+        context.webkitImageSmoothingEnabled = false;
+        context.msImageSmoothingEnabled = false;
+        context.imageSmoothingEnabled = false;
+
+*/
+
+
+
+
+
+
 
         var contentWidth = canvas.width;
         var contentHeight = canvas.height;
@@ -87,6 +144,9 @@ function downloadPDF(ele, pdfName){
             }
         }
 
+
+
+        // pdf.save('我的简历.pdf');
         //可动态生成
         pdf.save(pdfName);
     })

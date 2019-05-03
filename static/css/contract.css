@@ -1,0 +1,52 @@
+#demo{
+    background-color: #fff;
+    width: 1000px;
+    /* height: 400px; */
+    margin: auto;
+}
+
+#demo article{
+    background: #fff;
+}
+
+#demo .contract {
+    background: #fff;
+    /*padding: 76px 76px 114px;*/
+    padding: 86px 86px 114px;
+    position: relative;
+
+}
+
+#demo .contract .key-info {
+    display: flex;
+}
+
+#demo .contract .key-info> aside {
+    flex: 1;
+}
+
+#demo .contract > h1 {
+    text-align: center;
+    /*margin-top: 0;*/
+    margin-top: 38px;
+}
+
+#demo .contract > p:first-child {
+    margin-top: 0;
+}
+
+#demo .contract .key-info .info-left .info-row > span:first-child,
+#demo .contract .key-info .info-right .info-row > span:first-child{
+    font-weight: 600;
+}
+
+#demo .contract .signature {
+    position: absolute;
+    right: 86px;
+    bottom: 0;
+}
+
+#demo .contract .signature > img {
+    width: 200px;
+}
+
